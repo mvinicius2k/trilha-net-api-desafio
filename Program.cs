@@ -15,6 +15,8 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Adicionando serviço de criar o banco de dados automaticamente
+builder.Services.AddScoped<DbInit>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,5 +31,16 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+
+
+//Criando banco de dados automaticamente caso nao exista
+using (var scope = app.Services.CreateScope())
+{
+    var servicos = scope.ServiceProvider;
+    var dbInit = servicos.GetRequiredService<DbInit>();
+    dbInit.Initialize();
+
+}
 
 app.Run();

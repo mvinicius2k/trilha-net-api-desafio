@@ -1,3 +1,7 @@
+## Conexão com o SQL Server
+
+Usei uma imagem Docker para ter o SQL Server, os dados de conexão estão dentro do appsettings.json. Por conveniência a aplicação toda não foi dockerizada, apenas o SQL Server
+
 # DIO - Trilha .NET - API e Entity Framework
 www.dio.me
 
